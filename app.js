@@ -4,8 +4,7 @@ const app = express();
 const port= 3000;
 
 //static files
-app.use(express.static(__dirname+'style'));
-app.use(express.static(__dirname+'img'));
+app.use(express.static('public'));
 
 //register view engine
 app.set('view engine','ejs');
@@ -26,13 +25,7 @@ app.get('/about',(req,res)=>{
     res.render('about');
     });
 
-
-app.get('/about-us', (req, res)=>{
-    res.redirect('/');
-});
-
-
-app.get('/about',(req,res)=>{
+app.use((req,res)=>{
     res.status(404).render('404');
     });
 

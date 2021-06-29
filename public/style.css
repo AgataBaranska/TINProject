@@ -11,7 +11,7 @@ header {
     text-align: center;
     font-size: 35px;
     color: #8ca8ad;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(../img/headerImg.jpeg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(/headerImg.jpeg);
     background-size: cover;
     background-position: center;
 
