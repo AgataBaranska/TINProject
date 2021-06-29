@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+<body>
+  <%- include('./partials/header.ejs') %>
+
+  <%- include('./partials/nav.ejs') %>
+  <article>
+   <% if (products.length >0){ %>
+   <% products.forEach(product =>{ %>
+    <h3 class = "model"> <%=product.model %></h3>
+    <p class = "price"> <%=product.price %></p>
+
+   <% }) %>
+    <% } else { %>
+    <p> There are no products to display</p>
+    <% } %>
+  </article>
+
+  
+</body>
+<%- include('./partials/footer.ejs') %>
+</html>
