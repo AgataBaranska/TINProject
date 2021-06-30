@@ -10,9 +10,12 @@
       .then(response=>response.json())
       .then(json=>{
         let output = '<h2>Weather for New York</h2>';
-        output+=json;
+        let current = json['current'];
+        output+=`<p>observation time: ${JSON.stringify(current['observation_time'])}`;
+        output+=` temperature: ${JSON.stringify(current['temperature'])}`;
+        output+=` img: <img src = ${current["weather_icons"]} /> </p>`; 
+      
    
-
         document.getElementById('weather').innerHTML= output;
       })
     }
