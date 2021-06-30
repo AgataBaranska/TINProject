@@ -14,8 +14,7 @@
         let current = json['current'];
         let output=`<p>New York, time: ${JSON.stringify(current['observation_time'])},`;
         output+=` temp: ${JSON.stringify(current['temperature'])}`;
-        output+=` <img src = ${current["weather_icons"]} /> </p>`; 
-    
+        output+=` <img src = ${current['weather_icons']} /> </p>`; 
         document.getElementById('weather').innerHTML= output;
       })
     }

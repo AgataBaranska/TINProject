@@ -1,9 +1,14 @@
 //imports
 const express = require('express');
-const fetch = require('node-fetch');
 const app = express();
 const port= 3000;
-
+const mongoose = require('mongoose');
+const Product = require('./models/product');
+//connect to MangoDb
+const dbURI ='mongodb+srv://TINUser:1234Qwer@tincluster.mpshl.mongodb.net/TINProject?retryWrites=true&w=majority';
+mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology:true})
+.then((result)=>app.listen(port, ()=>{console.log(`Listening on port ${port}`)}))
+.catch((err)=> console.log(err));
 //static files
 app.use(express.static('public'));
 
@@ -13,15 +18,34 @@ app.get('/',(req,res)=>{
 res.render('index');
 });
 
-app.get('/products',(req,res)=>{
-const products =[ 
-    {model:'PR-1234', price:'29.90'},
-    {model:'OPR-1534', price:'33.90'},
-    {model:'DG-1634', price:'90.90'},
-];
 
-res.render('products',{products});
-    });
+app.get('/add-product',(req,res)=>{
+const product = new Product({
+    model:'Spoko model',
+    price: 2300
+})
+
+product.save()
+.then((result)=>{
+    res.send(result)
+})
+.catch((err)=>{
+    console.log(err);
+})
+});
+
+
+app.get('/products',(req,res)=>{
+Product.find()
+.then((products)=>{
+    res.render('products',{products})
+})
+.catch((err)=>{
+    console.log(err);
+});
+})
+
+
 
 app.get('/about',(req,res)=>{
     res.render('about');
@@ -32,4 +56,4 @@ app.use((req,res)=>{
     res.status(404).render('404');
     });
 
-app.listen(port, ()=>{console.log(`Listening on port ${port}`)});
+
