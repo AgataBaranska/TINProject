@@ -1,7 +1,25 @@
 <nav>
+    <div id=weather>Weather</div>
     <ul id="menu-list">
       <li><a href="/">Home</a></li>
       <li><a href="/products">Products</a></li>
       <li><a href="/about">About us</a></li>
     </ul>
   </nav>
+  <script>
+    function fetchWeather(){
+      fetch('http://api.weatherstack.com/current?access_key=18b357e2131320fa0a33f8c3ea9d55d5&query=New%20York')
+      .then(response=>response.json())
+      .then(json=>{
+        let current = json['current'];
+        let output=`<p>New York, time: ${JSON.stringify(current['observation_time'])},`;
+        output+=` temp: ${JSON.stringify(current['temperature'])}`;
+        output+=` <img src = ${current["weather_icons"]} /> </p>`; 
+    
+        document.getElementById('weather').innerHTML= output;
+      })
+    }
+    fetchWeather();
+  
+
+  </script>

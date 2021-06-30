@@ -9,13 +9,15 @@ body {
 header {
     padding: 30px;
     text-align: center;
-    font-size: 35px;
+    font-size: 15px;
     color: #8ca8ad;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(/headerImg.jpeg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(/img/headerImg.jpeg);
     background-size: cover;
     background-position: center;
 
 }
+
+
 
 nav {
     float: left;
@@ -30,6 +32,15 @@ nav ul {
     padding: 10px;
 }
 
+#weather{
+    border:2px solid rgb(1, 71, 80);
+    background: rgb(248, 247, 207);
+    width: 100%;
+    font-size:12px;
+    }
+#weather img{
+    border-radius: 50%;
+}    
 article {
     float: left;
     padding: 20px;
