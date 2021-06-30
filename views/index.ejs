@@ -4,11 +4,9 @@
 <%- include('./partials/head.ejs') %>
 
 <body>
-  <header>
-    <h1 id="shop-name">
-      SeeMore</h1>
-  </header>
 
+  <%- include('./partials/header.ejs') %>
+  
   <%- include('./partials/nav.ejs') %>
   <article>
     <h2>Lockdown Update</h2>
@@ -22,30 +20,7 @@
       </ol>
   </article>
 
-  <footer>
-    <table id="footer-table">
-      <tr>
-        <th>SeeMore Opticans</th>
-        <th>Opening hours</th>
-        <th>Follow Us</th>
-      </tr>
-      <tr>
-        <td>02-523</td>
-        <td>Mon-Fri 11:00-19:00</td>
-        <td>Facebook</td>
-      </tr>
-      <tr>
-        <td>Warsaw</td>
-        <td>Sat 11:00-15:00</td>
-        <td>Instagram</td>
-      </tr>
-      <tr>
-        <td>Prymusa 5</td>
-        <td>Sun Closed</td>
-        <td></td>
-      </tr>
-    </table>
-  </footer>
+  <%- include('./partials/footer.ejs') %>
 </body>
 
 </html>

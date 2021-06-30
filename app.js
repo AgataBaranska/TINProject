@@ -1,5 +1,6 @@
 //imports
 const express = require('express');
+const fetch = require('node-fetch');
 const app = express();
 const port= 3000;
 
@@ -18,16 +19,17 @@ const products =[
     {model:'OPR-1534', price:'33.90'},
     {model:'DG-1634', price:'90.90'},
 ];
-    res.render('products',{products});
+
+res.render('products',{products});
     });
 
 app.get('/about',(req,res)=>{
     res.render('about');
     });
 
+
 app.use((req,res)=>{
     res.status(404).render('404');
     });
 
 app.listen(port, ()=>{console.log(`Listening on port ${port}`)});
-
