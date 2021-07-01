@@ -17,25 +17,23 @@ header {
 
 }
 
-
-
 nav {
     float: left;
     width: 30%;
-    height: 300px;
+    height: max-content;
     background: #ccc;
     padding: 20px;
 }
 
 nav ul {
-    list-style-type: none;
+    list-style-type:none ;
     padding: 10px;
 }
 
 #weather{
     border:2px solid rgb(1, 71, 80);
     background: rgb(248, 247, 207);
-    width: 100%;
+   width: 100%;
     font-size:12px;
     }
 #weather img{
@@ -48,9 +46,10 @@ article {
     background-color: #f1f1f1;
     height: 300px;
 }
+
 .product{
-    border:3px solid greenyellow;
-    max-width: 200px;
+    border:3px solid  rgb(248, 247, 207);
+   width: 20%;
     float:left;
 }
 .product img{

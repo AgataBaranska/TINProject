@@ -9,14 +9,19 @@
   <%- include('./partials/nav.ejs') %>
 
 
-  <div class = 'product'>
+  <div class = 'article'>
    <% if (products.length >0){ %>
    <% products.forEach(product =>{ %>
     <div class ='product'>
     <img class = 'image' src = <%=product.imagePath %> />
     <h3 class = 'model'> <%=product.model %></h3>
     <p class = 'price'> <%=product.price %></p>
-    <button type = 'button'>Add to card</button>
+    <form action="/cart" method="POST">
+    <button type = 'submit'>Add to cart</button>
+    <input type="hidden" name="productId" value="<%= product._id %>">
+    </form>
+  
+
 
   </div>
    <% }) %>

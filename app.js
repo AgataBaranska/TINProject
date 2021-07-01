@@ -4,6 +4,9 @@ const app = express();
 const port= 3000;
 const mongoose = require('mongoose');
 const Product = require('./models/product');
+const { body, validationResult } = require('express-validator');
+const user = require('./models/user');
+
 //connect to MangoDb
 const dbURI ='mongodb+srv://TINUser:1234Qwer@tincluster.mpshl.mongodb.net/TINProject?retryWrites=true&w=majority';
 mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology:true})
@@ -14,11 +17,60 @@ app.use(express.static('public'));
 
 //register view engine
 app.set('view engine','ejs');
+app.use(express.json());
+
+
 app.get('/',(req,res)=>{
 res.render('index');
 });
 
+app.get('/products',(req,res)=>{
+    Product.find()
+    .then((products)=>{
+        res.render('products',{products})
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+})
 
+app.get('/cart', (req,res)=>{
+    res.render('cart');
+});
+
+app.post('/cart', (req,res)=>{
+const productId = req.body.productId;
+Product.findById(productId)
+.then(product =>{
+    return req.user.addToCart(product);
+})
+.then(result=> {
+    console.log(result);
+    res.redirect('/cart');
+})
+});
+
+app.get('/about',(req,res)=>{
+    res.render('about');
+});
+
+app.get('/user/login', (req,res)=>{
+res.render('user/login')
+});
+
+
+app.post('/user/login',
+body('email').isEmail(),
+body('password').isLength({ min: 5 }),// password must be at least 5 chars long
+(req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+});
+
+//template
 app.get('/add-product',(req,res)=>{
 const product = new Product({
     imagePath:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Glasses_black.jpg/1280px-Glasses_black.jpg',
@@ -36,27 +88,8 @@ product.save()
 });
 
 
-app.get('/products',(req,res)=>{
-Product.find()
-.then((products)=>{
-    res.render('products',{products})
-})
-.catch((err)=>{
-    console.log(err);
-});
-})
-
-app.get('/product')
-
-
-
-app.get('/about',(req,res)=>{
-    res.render('about');
-    });
-
-
 app.use((req,res)=>{
     res.status(404).render('404');
-    });
+});
 
 
