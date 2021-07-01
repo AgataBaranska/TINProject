@@ -41,10 +41,8 @@ app.get('/products/:id', async (req, res) => {
 const productId = req.params.id;
 
 try {
-var id=new ObjectId(productId);
-console.log(id);
-var product = await Product.findById(id).exec();
-console.log(product);
+var product = await Product.findById(productId).exec();
+res.render('product', {product});
 } catch (error) {
    console.log(error); 
 }
