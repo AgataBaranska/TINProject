@@ -7,6 +7,7 @@ const Product = require('./models/product');
 const { body, validationResult } = require('express-validator');
 const user = require('./models/user');
 
+
 //connect to MangoDb
 const dbURI ='mongodb+srv://TINUser:1234Qwer@tincluster.mpshl.mongodb.net/TINProject?retryWrites=true&w=majority';
 mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology:true})
@@ -15,6 +16,7 @@ mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology:true})
 //static files
 app.use(express.static('public'));
 
+app.use(express.urlencoded({ extended: true}));
 //register view engine
 app.set('view engine','ejs');
 app.use(express.json());
@@ -33,6 +35,22 @@ app.get('/products',(req,res)=>{
         console.log(err);
     });
 })
+
+//product details, np. http://localhost:3000/products/60dce7df9bad1573348198c7
+app.get('/products/:id', (req, res) => {
+
+const productId = req.params.id;
+Product.findById(productId)
+.then(product=> {
+    console.log(product);
+    res.render('product',{product});
+}).catch((err)=>{
+ console.log(err);
+});
+      
+
+    
+});
 
 app.get('/cart', (req,res)=>{
     res.render('cart');
@@ -58,10 +76,10 @@ app.get('/user/login', (req,res)=>{
 res.render('user/login')
 });
 
-
 app.post('/user/login',
-body('email').isEmail(),
-body('password').isLength({ min: 5 }),// password must be at least 5 chars long
+body('email').isEmail().withMessage('Invalid email typed'),
+body('password').isLength({ min: 5 }).withMessage('must be at least 5 characters long')
+.matches(/\d/).withMessage('must contain a number'),
 (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

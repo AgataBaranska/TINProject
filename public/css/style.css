@@ -22,35 +22,39 @@ nav {
     width: 30%;
     height: max-content;
     background: #ccc;
-    padding: 20px;
+    padding: 5px;
+  
 }
 
 nav ul {
     list-style-type:none ;
-    padding: 10px;
+    padding: 2px;
+    
 }
 
 #weather{
-    border:2px solid rgb(1, 71, 80);
+    border:2px solid rgb(236, 252, 166);
     background: rgb(248, 247, 207);
-   width: 100%;
+    width: 100%;
     font-size:12px;
     }
 #weather img{
     border-radius: 50%;
+  
 }    
 article {
     float: left;
     padding: 20px;
     width: 70%;
     background-color: #f1f1f1;
-    height: 300px;
+    min-height: 333px;
 }
 
 .product{
     border:3px solid  rgb(248, 247, 207);
    width: 20%;
     float:left;
+    background-color: rgb(255, 255, 255);
 }
 .product img{
     max-width: 150px;
@@ -72,6 +76,14 @@ footer {
     color: rgb(203, 243, 240);
     font-weight: 100;
     font-style: initial;
+}
+.form-control{
+    margin: 5px 0;
+}
+.form-control label{
+    display: inline-block;
+    width: 150px;
+    vertical-align: top;
 }
 
 
