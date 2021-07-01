@@ -13,7 +13,14 @@
    <% if (products.length >0){ %>
    <% products.forEach(product =>{ %>
     <div class ='product'>
+    <% var productUrl = '/products/' %>
+    <%productUrl+=product._id %>
+    
+    
+    <a href =<%=productUrl %> >
     <img class = 'image' src = <%=product.imagePath %> />
+    </a>
+    <button class = 'img-button'>Loupe</button>
     <h3 class = 'model'> <%=product.model %></h3>
     <p class = 'price'> <%=product.price %></p>
     <form action="/cart" method="POST">
@@ -21,8 +28,6 @@
     <input type="hidden" name="productId" value="<%= product._id %>">
     </form>
   
-
-
   </div>
    <% }) %>
     <% } else { %>
@@ -30,7 +35,14 @@
     <% } %>
     </div>
 
-  
+    <script type="text/javascript">
+      function image(img) {
+          var src = img.src;
+          window.open(src);
+      }
+      </script>
 </body>
 <%- include('./partials/footer.ejs') %>
+
+
 </html>

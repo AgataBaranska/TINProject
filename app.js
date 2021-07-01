@@ -37,19 +37,17 @@ app.get('/products',(req,res)=>{
 })
 
 //product details, np. http://localhost:3000/products/60dce7df9bad1573348198c7
-app.get('/products/:id', (req, res) => {
-
+app.get('/products/:id', async (req, res) => {
 const productId = req.params.id;
-Product.findById(productId)
-.then(product=> {
-    console.log(product);
-    res.render('product',{product});
-}).catch((err)=>{
- console.log(err);
-});
-      
-
-    
+console.log(productId);
+try {
+var ObjectId =new mongoose.Types.ObjectId;  
+console.log(ObjectId);
+var product = await Product.findById(ObjectId).exec();
+console.log(product);
+} catch (error) {
+   console.log(error); 
+}
 });
 
 app.get('/cart', (req,res)=>{
