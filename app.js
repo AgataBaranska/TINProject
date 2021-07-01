@@ -21,6 +21,7 @@ res.render('index');
 
 app.get('/add-product',(req,res)=>{
 const product = new Product({
+    imagePath:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Glasses_black.jpg/1280px-Glasses_black.jpg',
     model:'Spoko model',
     price: 2300
 })
@@ -44,6 +45,8 @@ Product.find()
     console.log(err);
 });
 })
+
+app.get('/product')
 
 
 
