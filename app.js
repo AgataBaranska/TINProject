@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const Product = require('./models/product');
 const { body, validationResult } = require('express-validator');
 const user = require('./models/user');
-
+const ObjectId =mongoose.Types.ObjectId; 
 
 //connect to MangoDb
 const dbURI ='mongodb+srv://TINUser:1234Qwer@tincluster.mpshl.mongodb.net/TINProject?retryWrites=true&w=majority';
@@ -36,14 +36,14 @@ app.get('/products',(req,res)=>{
     });
 })
 
-//product details, np. http://localhost:3000/products/60dce7df9bad1573348198c7
+//product details, eg. http://localhost:3000/products/60dce7df9bad1573348198c7
 app.get('/products/:id', async (req, res) => {
 const productId = req.params.id;
-console.log(productId);
+
 try {
-var ObjectId =new mongoose.Types.ObjectId;  
-console.log(ObjectId);
-var product = await Product.findById(ObjectId).exec();
+var id=new ObjectId(productId);
+console.log(id);
+var product = await Product.findById(id).exec();
 console.log(product);
 } catch (error) {
    console.log(error); 
