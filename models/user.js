@@ -27,11 +27,3 @@ const userSchema = new Schema({
 
 
 module.exports = mongoose.model('User', userSchema);
-
-// userSchema.methods.addToCart = function(product){
-//     const productIndexInCart = this.cart.items.findIndex(cartProduct=>{
-//         return cartProduct.productId.toString() === product._id.toString();//product exists in cart
-//     });
-
-  
-// }

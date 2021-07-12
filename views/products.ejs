@@ -15,16 +15,17 @@
     <div class ='product'>
     <% var productUrl = '/products/' %>
     <%productUrl+=product._id %>
-    
-    
+
     <a href =<%=productUrl %> >
     <img class = 'image' src = <%=product.imagePath %> />
     </a>
     <h3 class = 'model'> <%=product.model %></h3>
-    <p class = 'price'> <%=product.price %></p>
+    <p class = 'price'> $<%=product.price %></p>
     <form action="/cart" method="POST">
+    //
     <button type = 'submit'>Add to cart</button>
     <input type="hidden" name="productId" value="<%= product._id %>">
+    //
     </form>
   
   </div>

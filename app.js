@@ -5,13 +5,11 @@ const port= 3000;
 const mongoose = require('mongoose');
 const Product = require('./models/product');
 const { body, validationResult } = require('express-validator');
-const user = require('./models/user');
-const ObjectId =mongoose.Types.ObjectId; 
 
 //connect to MangoDb
 const dbURI ='mongodb+srv://TINUser:1234Qwer@tincluster.mpshl.mongodb.net/TINProject?retryWrites=true&w=majority';
-mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology:true})
-.then((result)=>app.listen(port, ()=>{console.log(`Listening on port ${port}`)}))
+mongoose.connect(dbURI,{useNewUrlParser:true, useUnifiedTopology:true})// options object to stop deprication warnings
+.then(()=>app.listen(port, ()=>{console.log(`Listening on port ${port}`)}))// listen for request after db connection established
 .catch((err)=> console.log(err));
 //static files
 app.use(express.static('public'));
@@ -20,7 +18,6 @@ app.use(express.urlencoded({ extended: true}));
 //register view engine
 app.set('view engine','ejs');
 app.use(express.json());
-
 
 app.get('/',(req,res)=>{
 res.render('index');
@@ -48,6 +45,7 @@ res.render('product', {product});
 }
 });
 
+//
 app.get('/cart', (req,res)=>{
     res.render('cart');
 });
